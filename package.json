@@ -1,7 +1,7 @@
 {
   "name": "high-order-cli",
-  "version": "1.0.0",
-  "description": "",
+  "version": "0.0.1",
+  "description": "A collection of complex cli components the way I would want them.",
   "main": "index.js",
   "scripts": {
     "start": "node --experimental-json-modules build/index",
@@ -16,5 +16,14 @@
     "@types/node": "^14.14.22",
     "@types/readline-sync": "^1.4.3",
     "readline-sync": "^1.4.10"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/th4t-gi/high-order-cli.git"
+  },
+  "bugs": {
+    "url": "https://github.com/th4t-gi/high-order-cli/issues"
+  },
+  "homepage": "https://github.com/th4t-gi/high-order-cli#readme"
 }
