@@ -49,7 +49,7 @@ export function reorderCLI(list: string[]): string[] {
  * @param {Object} options  .
  * @return {Array}
  */
-export function selectCLI(list: string[], options: { single: any; }): string | string[] {
+export function selectCLI(list: string[], options: { single: boolean; }): string | string[] {
   options = options || { single: false }
   const getSelected = (list: any[], index: number, selected: string | any[]) => {
     return list.map((val: string) => val.replace(/\u001b.../g, ''))
@@ -148,7 +148,7 @@ export function highlightCLI(str: string): string {
   return getSelected(str, start, end, true)[0]
 }
 
-export function sortCLI(list: any[], categories: string[]) {
+export function sortCLI(list: string[], categories: string[]): { [cat: string]: string[] } {
 
   const getSelected = (list: any[], index = null, sorted = null) => {
     list = list.map((val: string) => val.replace(/\u001b.../g, '')).map((val: string) => val.replace(/ -( \d)?$/, ''))
