@@ -1,18 +1,15 @@
-const readlineSync = require('readline-sync')
+import { keyIn } from 'readline-sync';
 
-/**
- * @param {string} str   string to get highlighted sub-string from.
- * @return {Array}
- */
-export function highlightCLI(str) {
-  let key, start = 0, end = 1, length;
+export function highlightCLI(str: string): string {
+
+  let key: string, start = 0, end = 3, length: number;
   if (end > str.length - 1) end = str.length
 
   console.log('\nLEFT:[Z]  RIGHT:[X]  HOLD:[SHIFT]  DONE:[SPACE]\n\n');
   while (true) {
     [str, length] = getSelected(str, start, end)
     console.log('\x1B[1A\x1B[K' + str);
-    key = readlineSync.keyIn('', { hideEchoBack: true, mask: '', limit: 'zxZX ' });
+    key = keyIn('', { hideEchoBack: true, mask: '', limit: 'zxZX ' });
 
     if (key.toLowerCase() == 'z') {
       if (key.toUpperCase() === key) {
@@ -36,7 +33,7 @@ export function highlightCLI(str) {
   return getSelected(str, start, end, true)[0]
 }
 
-const getSelected = (str, start, stop, returnBold = false) => {
+const getSelected = (str: string, start: number, stop: number, returnBold = false): [string, number?] => {
   const list = str.replace(/\u001b.+?m/g, '').split('')
   const begining = getSection(list, 0, start),
     bold = getSection(list, start, stop),
@@ -45,7 +42,7 @@ const getSelected = (str, start, stop, returnBold = false) => {
   if (returnBold) return [bold]
   return [begining + '\x1b[44m' + bold + '\x1b[0m' + end, (begining + bold + end).length]
 }
-const getSection = (str, start, end) => {
+const getSection = (str: string | string[], start: number, end: number) => {
   if (str instanceof Array) return str.slice(start, end).join('')
   return str.split('').slice(start, end).join('')
 }

@@ -1,18 +1,15 @@
-const readlineSync = require('readline-sync')
+import { keyIn } from 'readline-sync';
 
-/**
- * @param {string[]} list   list of any length to reorder.
- * @return {Array}
- */
-export function reorderCLI(list) {
-  let key, i = 0;
+export function reorderCLI(list: string[]): string[] {
+
+  let key: string, i = 0;
 
   console.log('\nUP:[W]  DOWN:[S]  HOLD:[SHIFT]  DONE:[SPACE]' + '\n'.repeat(list.length + 1));
 
   while (true) {
     list = getSelected(list, i)
     console.log('\x1B[1A\x1B[K'.repeat(list.length) + list.join('\n'));
-    key = readlineSync.keyIn('', { hideEchoBack: true, mask: '', limit: 'wsWS ' });
+    key = keyIn('', { hideEchoBack: true, mask: '', limit: 'wsWS ' });
 
     if (key.toLowerCase() == 'w') {
       if (key.toUpperCase() === key && i > 0) {
@@ -34,7 +31,7 @@ export function reorderCLI(list) {
   return list.map(val => val.replace(/\u001b.../g, ''))
 }
 
-const getSelected = (list, index) => {
+const getSelected = (list: string[], index: number) => {
   list = list.map(val => val.replace(/\u001b.../g, ''))
   return list.map((val, i) => (i === index) ? '\x1B[1m' + val + '\x1B[0m' : val)
 }

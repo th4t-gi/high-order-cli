@@ -1,12 +1,7 @@
-const readlineSync = require('readline-sync')
+import { keyIn } from 'readline-sync';
 
-/**
- * @param {string[]} list   list of any length to select from.
- * @param {Object} options  .
- * @return {Array}
- */
-export function selectCLI(list, options) {
-  let key, i = 0, selected = [];
+export function selectCLI(list: string[], options: { single: boolean; } = {single: false}): string | string[] {
+  let key: string, i = 0, selected = [];
   let { single } = options
 
   if (single) {
@@ -18,7 +13,7 @@ export function selectCLI(list, options) {
   while (true) {
     list = getSelected(list, i, selected)
     console.log('\x1B[1A\x1B[K'.repeat(list.length) + list.join('\n'));
-    key = readlineSync.keyIn('', { hideEchoBack: true, mask: '', limit: 'wsa ' });
+    key = keyIn('', { hideEchoBack: true, mask: '', limit: 'wsa ' });
     if (key === 'w') {
       if (i > 0) i--
     } else if (key === 's') {
@@ -32,9 +27,9 @@ export function selectCLI(list, options) {
     }
     else {
       if (single) {
-        return list[i]
+        return strip(list[i])
       } else {
-        list = list.map(val => val.replace(/\u001b.../g, '')).map(val => val.replace(/\[.\] /g, ''))
+        list = list.map((val: any) => strip(val))
       }
       break;
     }
@@ -42,12 +37,15 @@ export function selectCLI(list, options) {
   return selected.map((num) => list[num])
 }
 
-const getSelected = (list, index, selected) => {
-  return list.map(val => val.replace(/\u001b.../g, ''))
-    .map(val => val.replace(/\[.\] /g, ''))
-    .map((val, i) => (i === index) ? '\x1B[1m' + val + '\x1B[0m' : val)
-    .map((val, i) => (selected.includes(i) ? '[*] ' + val : '[ ] ' + val))
+const getSelected = (list: any[], index: number, selected: number[]) => {
+  return list.map((val: string) => val.replace(/\u001b.../g, ''))
+    .map((val: string) => val.replace(/\[.\] /g, ''))
+    .map((val: string, i: number) => (i === index) ? '\x1B[1m' + val + '\x1B[0m' : val)
+    .map((val: string, i: number) => (selected.includes(i) ? '[*] ' + val : '[ ] ' + val))
 }
+
+const strip = (str: string) => str.replace(/\u001b.../g, '').replace(/\[.\] /g, '')
+
 
 // const theList = [
 //   "this should be last",
