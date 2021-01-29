@@ -4,8 +4,8 @@
   "description": "A collection of complex cli components the way I would want them.",
   "main": "index.js",
   "scripts": {
-    "start": "node --experimental-json-modules build/index",
-    "test": "node --experimental-json-modules build/test",
+    "start": "node build/index",
+    "test": "node build/test",
     "dev": "tsc -w"
   },
   "keywords": [],

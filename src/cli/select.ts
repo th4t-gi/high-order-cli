@@ -1,6 +1,6 @@
 import { keyIn } from 'readline-sync';
 
-export function selectCLI(list: string[], options: { single: boolean; } = {single: false}): string | string[] {
+export function selectCLI(list: string[], options: { single?: boolean; } = {single: false}): string | string[] {
   let key: string, i = 0, selected = [];
   let { single } = options
 

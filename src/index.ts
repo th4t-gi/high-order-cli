@@ -1,7 +1,7 @@
-import { highlightCLI } from "./cli/highlight";
-import { reorderCLI } from "./cli/reorder";
-import { selectCLI } from "./cli/select";
-import { sortCLI } from "./cli/sort";
+import { highlightCLI } from "./cli/highlight.js";
+import { reorderCLI } from "./cli/reorder.js";
+import { selectCLI } from "./cli/select.js";
+import { sortCLI } from "./cli/sort.js";
 
 export {
   highlightCLI,
