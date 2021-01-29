@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node build/index",
     "test": "node build/test",
-    "dev": "tsc -w"
+    "dev": "tsc -w",
+    "postinstall": "tsc"
   },
   "keywords": [],
   "author": "Judd Brau",
