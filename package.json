@@ -2,7 +2,7 @@
   "name": "high-order-cli",
   "version": "0.0.3",
   "description": "A collection of complex cli components the way I would want them.",
-  "main": "index.js",
+  "main": "build/index.js",
   "scripts": {
     "start": "node build/index",
     "test": "node build/test",
