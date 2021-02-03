@@ -1,6 +1,6 @@
 {
   "name": "high-order-cli",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A collection of complex cli components the way I would want them.",
   "main": "build/index.js",
   "scripts": {
